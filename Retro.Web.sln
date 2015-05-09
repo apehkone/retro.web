@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retro.Web", "Retro.Web\Retro.Web.csproj", "{BD43490E-5C1B-4D4B-8D6F-236BDC51BAD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{7CD2C817-35F6-445E-96D2-F285E4F86FF9}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{CF04DF63-4998-4EC5-A31A-40D318997798}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\RetroWeb-WAWS-dev.json = PublishScripts\Configurations\RetroWeb-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retro.Domain", "Retro.Domain\Retro.Domain.csproj", "{CB0056F9-63CB-4F29-9A8A-D6DED6552BE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retro.Tests", "Retro.Tests\Retro.Tests.csproj", "{90808B17-76B8-4173-A66B-FE9E12D81B6E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD43490E-5C1B-4D4B-8D6F-236BDC51BAD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD43490E-5C1B-4D4B-8D6F-236BDC51BAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD43490E-5C1B-4D4B-8D6F-236BDC51BAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD43490E-5C1B-4D4B-8D6F-236BDC51BAD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB0056F9-63CB-4F29-9A8A-D6DED6552BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB0056F9-63CB-4F29-9A8A-D6DED6552BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB0056F9-63CB-4F29-9A8A-D6DED6552BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB0056F9-63CB-4F29-9A8A-D6DED6552BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90808B17-76B8-4173-A66B-FE9E12D81B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90808B17-76B8-4173-A66B-FE9E12D81B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90808B17-76B8-4173-A66B-FE9E12D81B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90808B17-76B8-4173-A66B-FE9E12D81B6E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CF04DF63-4998-4EC5-A31A-40D318997798} = {7CD2C817-35F6-445E-96D2-F285E4F86FF9}
+	EndGlobalSection
+EndGlobal
