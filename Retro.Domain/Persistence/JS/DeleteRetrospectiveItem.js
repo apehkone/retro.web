@@ -23,15 +23,18 @@ function(retroId, categoryId, itemId) {
             for (var i = 0, len = retro.categories.length; i < len; i++) {
                 if (categoryId === retro.categories[i].id) {
                     if (retro.categories[i].items) {
-                        retro.categories[i].items.forEach(function(it) {
+                        for (var c = 0, clen = retro.categories[i].items.length; c < clen; c++) {
+                            var it = retro.categories[i].items[c];
+
                             if (it.id === itemId) {
-                                Array.splice(Array.indexOf(it), 1);
+                                retro.categories[i].items.splice(c, 1);
                                 retro.updatedOn = new Date().toJSON().toString();
                                 collection.replaceDocument(retro._self, retro, {});
                                 response.setBody(true);
                                 return;
                             }
-                        });
+
+                        }
                     }
                 }
             }
