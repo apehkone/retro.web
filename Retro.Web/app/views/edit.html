@@ -3,7 +3,7 @@
     <h2>{{edit.model.description}}</h2>
 
     <div class="row">
-        
+
         <div class="col-md-4" ng-repeat="category in edit.model.categories">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -13,13 +13,21 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <div class="note" ng-repeat="item in category.items">
-                        <textarea ng-model="item.description"></textarea>
+                    <div class="panel panel-default" ng-repeat="item in category.items">
 
-                        <div class="note-edit-ctrls">
-                            <a ng-click="edit.saveItem(category,item)"><i class="fa fa-floppy-o"></i></a>
-                            <a ng-click="edit.deleteItem(category, item)"><i class="fa fa-trash-o"></i></a>
+                        <div class="panel-heading">
+                                
                         </div>
+
+                        <div class="panel-body">
+                            <textarea class="form-control" ng-model="item.description"></textarea>
+                        </div>
+
+                        <div class="panel-footer">
+                            <a class="btn btn-sm btn-primary" ng-click="edit.saveItem(category,item)">save</a>
+                            <a class="btn btn-sm btn-danger"  ng-click="edit.deleteItem(category, item)">delete</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
