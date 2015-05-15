@@ -13,19 +13,12 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <div class="panel panel-default" ng-repeat="item in category.items">
+                    <div class="panel panel-default" ng-repeat="item in category.items" ng-click="edit.editItem(category,item)" style="cursor: pointer;">
 
-                        <div class="panel-heading">
-                                
-                        </div>
+                        <div class="panel-heading"></div>
 
                         <div class="panel-body">
-                            <textarea class="form-control" ng-model="item.description"></textarea>
-                        </div>
-
-                        <div class="panel-footer">
-                            <a class="btn btn-sm btn-primary" ng-click="edit.saveItem(category,item)">save</a>
-                            <a class="btn btn-sm btn-danger"  ng-click="edit.deleteItem(category, item)">delete</a>
+                            <span>{{item.description}}</span>
                         </div>
 
                     </div>
@@ -33,4 +26,29 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="editCtrl" tabindex="-1" role="dialog" aria-labelledby="editCtrlLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="editCtrlLabel">{{edit.selectedCategory.description}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-group">
+                        <textarea class="form-control" ng-model="edit.selectedItem.description"></textarea>
+
+                    </div>
+                        </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a class="btn btn-danger" ng-click="edit.deleteItem(edit.selectedCategory,edit.selectedItem)">Delete</a>
+                    <button type="button" class="btn btn-primary" ng-click="edit.saveItem(edit.selectedCategory,edit.selectedItem)">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -11,6 +11,7 @@
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'editController';
+        vm.selectedItem = null;
 
         activate();
 
@@ -19,22 +20,43 @@
         }
 
         vm.addItem = function (parent) {
-            vm.model.categories.forEach(function(category) {
+            vm.model.categories.forEach(function (category) {
                 if (category.id === parent.id) {
                     var item = new RetroItem();
                     item.retrospectiveId = vm.model.id;
                     item.categoryId = parent.categoryId;
-                    category.items.push(item);
-                    return;
+                    vm.editItem(category, item);
                 }
             });
+        };
+
+        vm.editItem = function (parent, item) {
+            vm.selectedCategory = parent;
+            vm.selectedItem = item;
+            $('#editCtrl').modal('show');
         };
 
         vm.saveItem = function (parent, item) {
             item.retrospectiveId = vm.model.id;
             item.categoryId = parent.id;
-            retroItemRepository.save(item, function(result) {
-                item.id = result.id; 
+            retroItemRepository.save(item, function (result) {
+
+                vm.model.categories.forEach(function (category) {
+                    if (category.id === parent.id) {
+                        var found = false;
+                        category.items.forEach(function(i) {
+                            if (i.id == result.id) {
+                                found = true; 
+                            }
+                        });
+
+                        if (!found) {
+                            item.id = result.id;
+                            category.items.push(item);
+                        }
+                    }
+                });
+                $('#editCtrl').modal('hide');
             });
         };
 
@@ -43,6 +65,7 @@
             var index = vm.model.categories[category].items.indexOf(item);
             retroItemRepository.delete({ 'id': item.id, 'categoryId' : parent.id, "retrospectiveId" : vm.model.id }, function() {
                 vm.model.categories[category].items.splice(index, 1);
+                $('#editCtrl').modal('hide');
             });
         };
     }
