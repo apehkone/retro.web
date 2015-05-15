@@ -4,7 +4,7 @@
 
     <div class="row">
 
-        <div class="col-md-4" ng-repeat="category in edit.model.categories" ng-drop="true" ng-drop-success="edit.onDragComplete(category,$data,$event)">
+        <div class="col-lg-4" ng-repeat="category in edit.model.categories" ng-drop="true" ng-drop-success="edit.onDragComplete(category,$data,$event)">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     {{category.description}}
@@ -14,7 +14,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="panel panel-default" ng-repeat="item in category.items" style="cursor: pointer;" ng-drag="true" ng-drag-data="{category:category,item:item}">
-                        <div class="panel-heading"></div>
+                        <div class="panel-heading"><a ng-click="edit.voteItem(category,item)"><i class="fa fa-thumbs-o-up"></i> {{item.votes}} </a></div>
                         <div class="panel-body" ng-click="edit.editItem(category,item)" ng-prevent-drag="true">
                             <span>{{item.description}}</span>
                         </div>
@@ -33,11 +33,11 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                    <div class="form-group">
-                        <textarea class="form-control" ng-model="edit.selectedItem.description"></textarea>
+                        <div class="form-group">
+                            <textarea class="form-control" ng-model="edit.selectedItem.description"></textarea>
 
-                    </div>
-                        </form>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

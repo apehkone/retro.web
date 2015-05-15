@@ -6,11 +6,14 @@
         <div class="form-group">
             <label for="description">Description</label>
             <input type="text" class="form-control" id="description" placeholder="Enter description" ng-model="add.model.description">
+            
+            <label for="templates">Choose template:</label>
+            <select id="templates" class="form-control" ng-model="add.model.selectedTemplate" ng-options="item.code as item.description for item in add.model.templates"></select>
         </div>
-        
+
         <button type="submit" class="btn btn-danger" ng-click="add.cancel()">Cancel</button>
 
         <button type="submit" class="btn btn-default" ng-click="add.submit()">Submit</button>
     </form>
 
-</div>
+</div> 

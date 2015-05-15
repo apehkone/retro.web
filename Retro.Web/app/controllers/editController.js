@@ -36,6 +36,13 @@
             $('#editCtrl').modal('show');
         };
 
+        vm.voteItem = function (parent, item) {
+            item.votes = item.votes + 1;
+            item.retrospectiveId = vm.model.id;
+            item.categoryId = parent.id;
+            retroItemRepository.save(item);
+        }
+
         vm.saveItem = function (parent, item) {
             item.retrospectiveId = vm.model.id;
             item.categoryId = parent.id;

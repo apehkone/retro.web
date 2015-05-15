@@ -38,7 +38,7 @@ namespace Retro.Web.api
         [HttpPost]
         [Route("")]
         public async Task<object> Post(RetrospectiveModel value) {
-            Retrospective retro = RetrospectiveFactory.Create(value.Description);
+            Retrospective retro = RetrospectiveFactory.Create(value.Description, value.SelectedTemplate);
             ResourceResponse<Document> result = await repository.Save(retro);
             return new {id = result.Resource.Id};
         }

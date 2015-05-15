@@ -12,6 +12,8 @@
         vm.title = "addController";
 
         vm.model = new Retro();
+        vm.model.selectedTemplate = null;
+        vm.model.templates = [{ code: "1", description: "Todo" }, { code: "2", description: "Pros and Cons" }, { code: "3", description: "Scrum Retrospective" }, { code: "4", description: "4 Sections" }];
 
         activate();
 

@@ -8,6 +8,7 @@
             this.description = null;
             this.createdOn = null;
             this.updatedOn = null;
+            this.selectedTemplate = null;
 
             if (dto) {
                 this.load(dto);
