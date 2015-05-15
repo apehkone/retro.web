@@ -68,5 +68,21 @@
                 $('#editCtrl').modal('hide');
             });
         };
+
+        vm.onDragComplete = function (targetCategory, source) {
+            if (!source) return;
+
+            source.category.items.splice(source.category.items.indexOf(source.item), 1);
+            targetCategory.items.push(source.item);
+
+            retroItemRepository.delete({ 'id': source.item.id, 'categoryId': source.category.id, "retrospectiveId": vm.model.id }, function () {
+                source.item.retrospectiveId = vm.model.id;
+                source.item.categoryId = targetCategory.id;
+                source.item.id = null;
+                retroItemRepository.save(source.item, function(result) {
+                    source.item.id = result.id;
+                });
+            });
+        };
     }
 })();
