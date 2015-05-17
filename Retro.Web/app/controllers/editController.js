@@ -59,6 +59,7 @@
 
                         if (!found) {
                             item.id = result.id;
+                            item.votes = 0;
                             category.items.push(item);
                         }
                     }
