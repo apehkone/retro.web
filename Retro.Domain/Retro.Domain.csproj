@@ -59,8 +59,8 @@
     <Compile Include="Commands\EntityCommandResult.cs" />
     <Compile Include="Commands\CreateOrUpdateRetrospectiveItemCommand.cs" />
     <Compile Include="Commands\CreateOrUpdateRetrospectiveItemHandler.cs" />
-    <Compile Include="Commands\UpdateRetrospectiveItemCommand.cs" />
-    <Compile Include="Commands\UpdateRetrospectiveItemHandler.cs" />
+    <Compile Include="Commands\VoteRetrospectiveItemCommand.cs" />
+    <Compile Include="Commands\VoteRetrospectiveItemHandler.cs" />
     <Compile Include="Entities\DocumentEntityBase.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\RetrospectiveFactory.cs" />
@@ -95,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Persistence\JS\DeleteRetrospectiveItem.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Persistence\JS\VoteRetrospectiveItem.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

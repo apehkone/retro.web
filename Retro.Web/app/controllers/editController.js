@@ -5,9 +5,9 @@
         .module('app')
         .controller('editController', editController);
 
-    editController.$inject = ["$location", "$routeParams", "retroRepository", "retroItemRepository", "RetroItem"];
+    editController.$inject = ["$location", "$routeParams", "retroRepository", "retroItemRepository", "voteRepository", "RetroItem"];
 
-    function editController($location, $routeParams, retroRepository, retroItemRepository, RetroItem) {
+    function editController($location, $routeParams, retroRepository, retroItemRepository, voteRepository, RetroItem) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'editController';
@@ -40,7 +40,7 @@
             item.votes = item.votes + 1;
             item.retrospectiveId = vm.model.id;
             item.categoryId = parent.id;
-            retroItemRepository.save(item);
+            voteRepository.save(item);
         }
 
         vm.saveItem = function (parent, item) {

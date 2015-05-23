@@ -944,6 +944,7 @@
   <ItemGroup>
     <Compile Include="api\RetroItemController.cs" />
     <Compile Include="api\RetrospectiveController.cs" />
+    <Compile Include="api\VoteController.cs" />
     <Compile Include="App_Start\AutomapperConfig.cs" />
     <Compile Include="App_Start\ContainerConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

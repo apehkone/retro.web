@@ -7,6 +7,15 @@
 
 })();
 
+(function () {
+    "use strict";
+
+    angular.module("app").factory("voteRepository", function ($resource) {
+        return $resource("api/vote");
+    });
+
+})();
+
 
 (function() {
     "use strict";

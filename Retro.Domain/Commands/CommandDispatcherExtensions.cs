@@ -10,6 +10,10 @@ namespace Retro.Domain.Commands
             return await dispatcher.DispatchAsync<CreateOrUpdateRetrospectiveItemCommand, EntityCommandResult<RetrospectiveItem>>(command);
         }
 
+        public async static Task<CommandResult> VoteRetrospectiveItemAsyn(this ICommandDispatcher dispatcher, VoteRetrospectiveItemCommand command) {
+            return await dispatcher.DispatchAsync<VoteRetrospectiveItemCommand, CommandResult>(command);
+        }
+
         public async static Task<CommandResult> DeleteRetrospectiveItemAsync(this ICommandDispatcher dispatcher, DeleteRetrospectiveItemCommand command) {
             return await dispatcher.DispatchAsync<DeleteRetrospectiveItemCommand, CommandResult>(command);
         }
