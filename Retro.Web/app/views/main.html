@@ -1,8 +1,9 @@
 ﻿<div ng-controller="mainController as main">
+    
+    <div class="col-md-12">
+        <h2>Boards</h2>    
+    </div>
 
-    <h2>Items</h2>
-
-    {{ main.title }}
     <div class="row">
         <div class="col-md-12">
             <table class="table">
@@ -10,14 +11,12 @@
                     <tr>
                         <th>Description</th>
                         <th>Created</th>
-                        <th>Update</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in main.items">
                         <td> <a href="/#/edit/{{item.id}}">{{ item.description }}</a> </td>
-                        <td>{{ item.createdOn }}</td>
-                        <td>{{ item.updatedOn }}</td>
+                        <td>{{ item.createdOn | date:'short' }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -25,10 +24,8 @@
     </div>
 
     <div class="row">
-
-        <div class="pull-right">
-            <a href="#/add" class="btn btn-primary">Add</a>
+        <div class="col-md-12">
+                <a href="#/add" class="btn btn-primary">Add</a>
         </div>
     </div>
-
 </div>

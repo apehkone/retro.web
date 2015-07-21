@@ -7,8 +7,10 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Commando.Core.Util;
+using Microsoft.AspNet.Identity;
 using Retro.Domain.Entities;
 using Retro.Domain.Persistence;
+using Retro.Web.Security;
 
 namespace Retro.Web
 {
@@ -21,6 +23,7 @@ namespace Retro.Web
             builder.RegisterType<DbConfig>().As<IDbConfig>();
             builder.RegisterType<DbContext>().As<IDbContext>();
             builder.RegisterType<DocumentRepository<Retrospective>>().As<IDocumentRepository<Retrospective>>();
+
             builder.RegisterBasicDispatcher(assembly => assembly.GetCustomAttributes(false).Cast<Attribute>().Any(attribute => attribute is AssemblyProductAttribute && ((AssemblyProductAttribute)attribute).Product.StartsWith("Retro")));
 
             var container = builder.Build();

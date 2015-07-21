@@ -1,4 +1,5 @@
 ﻿@using System
+@using System.Web.Script.Services
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,49 +12,50 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
-    <body ng-app="app">
-        <a href="https://github.com/apehkone/retro.web"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-        <div class="navbar navbar navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+<body ng-app="app">
+    @*<a href="https://github.com/apehkone/retro.web"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>*@
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                @if (Request.IsAuthenticated) {
                     <ul class="nav navbar-nav">
                         <li><a href="#main">Main</a></li>
                     </ul>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav"></ul>
-                </div>
+                }
+                
             </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        
+        <div ng-view>
+
         </div>
 
-        <div class="container body-content">
-            <div ng-view>
+        @RenderBody()
 
-            </div>
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year</p>
-            </footer>
-        </div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
 
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
-        <script src="~/scripts/angular.js"></script>
-        <script src="~/scripts/angular-route.js"></script>
-        <script src="~/scripts/angular-resource.js"></script>
-        <script src="~/scripts/ngDraggable.js"></script>
-        <script src="~/app/app.js"></script>
-        <script src="~/app/models/retroModel.js"></script>
-        <script src="~/app/controllers/mainController.js"></script>
-        <script src="~/app/controllers/pageController.js"></script>
-        <script src="~/app/controllers/addController.js"></script>
-        <script src="~/app/controllers/editController.js"></script>
-        <script src="~/app/services/retrospectiveRepository.js"></script>
-    </body>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
 </html>

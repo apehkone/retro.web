@@ -1,5 +1,4 @@
-﻿@import url(http://fonts.googleapis.com/css?family=Gloria+Hallelujah);
-body {
+﻿body {
   padding-top: 50px;
   padding-bottom: 20px; }
 
@@ -10,5 +9,8 @@ body {
 
 a {
   cursor: pointer; }
+
+.icon-white {
+  color: white !important; }
 
 /*# sourceMappingURL=Site.css.map */
