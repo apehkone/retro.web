@@ -7,19 +7,19 @@ namespace Retro.Domain.Entities
     {
         public DateTime? UpdatedOn {
             get {
-                return GetValue<DateTime?>("updatedOn");
+                return GetPropertyValue<DateTime?>("updatedOn");
             }
             set {
-                SetValue("updatedOn", value);
+                SetPropertyValue("updatedOn", value);
             }
         }
 
         public DateTime? CreatedOn {
             get {
-                return GetValue<DateTime?>("createdOn");
+                return GetPropertyValue<DateTime?>("createdOn");
             }
             set {
-                SetValue("createdOn", value);
+                SetPropertyValue("createdOn", value);
             }
         }
     }
