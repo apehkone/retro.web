@@ -21,7 +21,7 @@ namespace Retro.Web
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterType<DbConfig>().As<IDbConfig>();
-            builder.RegisterType<DbContext>().As<IDbContext>();
+            builder.RegisterType<DbContext>().As<IDbContext>().SingleInstance();
             builder.RegisterType<DocumentRepository<Retrospective>>().As<IDocumentRepository<Retrospective>>();
 
             builder.RegisterBasicDispatcher(assembly => assembly.GetCustomAttributes(false).Cast<Attribute>().Any(attribute => attribute is AssemblyProductAttribute && ((AssemblyProductAttribute)attribute).Product.StartsWith("Retro")));

@@ -16,13 +16,19 @@ namespace Retro.Domain.Persistence
         private readonly IDbConfig config;
         private Database database;
         private DocumentCollection documentCollection;
+        private static bool isInitialized; 
 
         public DbContext(IDbConfig config) {
             this.config = config;
             client = new DocumentClient(new Uri(config.EndpointUrl), config.AuthorizationKey);
             GetOrCreateDatabase(config.DataBaseId);
             GetOrCreateDocumentCollection();
-            CreateStoredProcedures();
+
+            // Make sure this is done only once
+            if (!isInitialized) {
+                CreateStoredProcedures();    
+            }
+            isInitialized = true;
         }
 
         public DocumentClient Client { get { return client; } }

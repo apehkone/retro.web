@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using log4net;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
+using Polly;
 using Retro.Domain.Entities;
 
 namespace Retro.Domain.Persistence
@@ -12,6 +14,7 @@ namespace Retro.Domain.Persistence
     public class DocumentRepository<TDocument> : IDocumentRepository<TDocument> where TDocument : DocumentEntityBase
     {
         readonly IDbContext ctx;
+        readonly ILog log = LogManager.GetLogger(typeof (DocumentRepository<>));
 
         public DocumentRepository(IDbContext ctx) {
             this.ctx = ctx;
@@ -42,7 +45,21 @@ namespace Retro.Domain.Persistence
 
         public async Task<StoredProcedureResponse<dynamic>> ExecuteStoredProc(string procedure, dynamic[] parameters) {
             var storedProcSelfLink = ResolveStoredProcSelfLink(procedure);
-            return await ctx.Client.ExecuteStoredProcedureAsync<dynamic>(storedProcSelfLink, parameters);
+
+            try {
+                var policy = Policy.Handle<DocumentClientException>().WaitAndRetryAsync(new[]
+                                                                      {
+                                                                          TimeSpan.FromSeconds(1),
+                                                                          TimeSpan.FromSeconds(2),
+                                                                          TimeSpan.FromSeconds(3)
+                                                                      });
+
+                return await policy.ExecuteAsync(() => ctx.Client.ExecuteStoredProcedureAsync<dynamic>(storedProcSelfLink, parameters));
+            }
+            catch (Exception ex) {
+                log.Error(ex);
+                throw;
+            }
         }
 
         private string ResolveStoredProcSelfLink(string procedure) {
