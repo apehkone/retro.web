@@ -13,4 +13,7 @@ a {
 .icon-white {
   color: white !important; }
 
+[ng-drop].drag-enter {
+  background-color: #dddddd; }
+
 /*# sourceMappingURL=Site.css.map */
