@@ -19,6 +19,40 @@
             vm.model = retroRepository.get({ id: $routeParams.id });
         }
 
+        var hub = $.connection.retroHub;
+
+        hub.client.notify = function (event) {
+            console.log("Event received");
+            if (vm.model.id !== event.boardId) return;
+
+            if (event.action === "Vote") {
+                vm.model.categories.forEach(function (category) {
+                    if (category.id === event.categoryId) {
+                        category.items.forEach(function (item) {
+                            if (item.id == event.retroId) {
+                                item.votes = item.votes + 1;
+                            }
+                        });
+                    }
+                });
+            }
+        };
+
+        $.connection.hub.logging = true;
+
+        $.connection.hub.start()
+            .done(function() {
+                console.log("Now connected: " + $.connection.hub.id);
+                hub.server.subscribe($routeParams.id);
+            })
+            .fail(function() {
+                console.log("Failed to connect.");
+            });
+
+        vm.sendEvent = function(event) {
+            hub.server.notify(event);
+        };
+
         vm.addItem = function (parent) {
             vm.model.categories.forEach(function (category) {
                 if (category.id === parent.id) {
@@ -41,12 +75,17 @@
             item.retrospectiveId = vm.model.id;
             item.categoryId = parent.id;
             voteRepository.save(item);
+            vm.sendEvent({ boardId: vm.model.id, retroId: item.id, categoryId: parent.id, action: "Vote" });
         }
 
+
+        
         vm.saveItem = function (parent, item) {
             item.retrospectiveId = vm.model.id;
             item.categoryId = parent.id;
             retroItemRepository.save(item, function (result) {
+
+                vm.sendEvent({ boardId: vm.model.id, retroId: result.id, categoryId: parent.id, action: "Save" });
 
                 vm.model.categories.forEach(function (category) {
                     if (category.id === parent.id) {
