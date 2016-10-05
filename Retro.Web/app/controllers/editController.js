@@ -29,7 +29,7 @@
                 vm.model.categories.forEach(function (category) {
                     if (category.id === event.categoryId) {
                         category.items.forEach(function (item) {
-                            if (item.id == event.retroId) {
+                            if (item.id === event.retroId) {
                                 item.votes = item.votes + 1;
                             }
                         });
@@ -70,13 +70,13 @@
             $('#editCtrl').modal('show');
         };
 
-        vm.voteItem = function (parent, item) {
+        vm.voteItem = function(parent, item) {
             item.votes = item.votes + 1;
             item.retrospectiveId = vm.model.id;
             item.categoryId = parent.id;
             voteRepository.save(item);
             vm.sendEvent({ boardId: vm.model.id, retroId: item.id, categoryId: parent.id, action: "Vote" });
-        }
+        };
 
 
         
@@ -91,7 +91,7 @@
                     if (category.id === parent.id) {
                         var found = false;
                         category.items.forEach(function(i) {
-                            if (i.id == result.id) {
+                            if (i.id === result.id) {
                                 found = true; 
                             }
                         });

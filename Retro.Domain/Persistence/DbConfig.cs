@@ -3,7 +3,7 @@
     public class DbConfig : IDbConfig
     {
         private const string ENDPOINT_URL = @"https://retro.documents.azure.com:443/";
-        private const string AUTHORIZATION_KEY = "9XJDrY6gYQXnSX+WWtNIr66fvEwRbvU98opG5owV5+4MRQoThVf7LLyq7cgABSeYnSy48+ek+oNcBUqDjr3lDw==";
+        private const string AUTHORIZATION_KEY = "CSVpEnbbcxS2EUI1moMRvYV2CauFpS0j7b72ybhD8TZCF4cDbFIJAzxpzws26VVopb6XFpTFy2GDVgFYjJaW4A==";
         private const string DATA_BASE_ID = "RetroDb";
         private const string DOCUMENT_COLLECTION_ID = "RetroDb.Collection";
 
@@ -16,7 +16,7 @@
     public class IdentityDbConfig : IDbConfig
     {
         private const string ENDPOINT_URL = @"https://retro.documents.azure.com:443/";
-        private const string AUTHORIZATION_KEY = "9XJDrY6gYQXnSX+WWtNIr66fvEwRbvU98opG5owV5+4MRQoThVf7LLyq7cgABSeYnSy48+ek+oNcBUqDjr3lDw==";
+        private const string AUTHORIZATION_KEY = "CSVpEnbbcxS2EUI1moMRvYV2CauFpS0j7b72ybhD8TZCF4cDbFIJAzxpzws26VVopb6XFpTFy2GDVgFYjJaW4A===";
         private const string DATA_BASE_ID = "RetroDb";
         private const string DOCUMENT_COLLECTION_ID = "Identity";
 
